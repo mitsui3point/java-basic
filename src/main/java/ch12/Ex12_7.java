@@ -1,6 +1,6 @@
 package ch12;
 
-public class Ch12_7 {
+public class Ex12_7 {
     public static void main(String[] args) {
         new Child().parentMethod();
         new Child().parentmethod();
