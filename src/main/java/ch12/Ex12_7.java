@@ -1,8 +1,20 @@
 package ch12;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Ex12_7 {
+    /**
+     * @SuppressWarnings
+     * : {@link SuppressWarnings}<br>
+     * : 컴파일시 경고메시지가 나타나지 않게 억제한다<br>
+     * : 파라미터에 억제하고자 하는 경고의 종류를 문자열로 지정<br>
+     * : @SuppressWarnings({"deprecation","unchecked","varargs"})<br>
+     * $ javac -encoding utf-8 src/main/java/ch12/Ex12_7.java<br>
+     * Note: src\main\java\ch12\Ex12_7.java uses or overrides a deprecated API.<br>
+     * Note: Recompile with -Xlint:deprecation for details.<br>
+     */
+    @SuppressWarnings("deprecation")
     public static void main(String[] args) {
         new Child().parentMethod();
     }
@@ -26,11 +38,11 @@ class Parent {
  * : 앞으로 사용하지 않을 것을 권장하는 필드나 메서드에 붙인다.<br>
  * : @Deprecated 사용 예, {@link Date#getDate()}<br>
  * : @Deprecated 가 붙은 대상이 사용된 코드를 컴파일하면 나타나는 메시지<br>
- * javac -encoding utf-8 src/main/java/ch12/Ex12_7.java<br>
+ * $ javac -encoding utf-8 src/main/java/ch12/Ex12_7.java<br>
  * Note: src\main\java\ch12\Ex12_7.java uses or overrides a deprecated API.<br>
  * Note: Recompile with -Xlint:deprecation for details.<br>
  * <br>
- * javac -encoding utf-8 -Xlint:deprecation src/main/java/ch12/Ex12_7.java<br>
+ * $ javac -encoding utf-8 -Xlint:deprecation src/main/java/ch12/Ex12_7.java<br>
  * src\main\java\ch12\Ex12_7.java:7: warning: [deprecation] parentMethod() in Child has been deprecated<br>
  *         new Child().parentMethod();<br>
  *                    ^<br>
