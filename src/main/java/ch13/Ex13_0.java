@@ -56,4 +56,51 @@ public class Ex13_0 {
      * {@link ThreadGroup#}
      * : 그룹으로 Thread 를 제어하거나 정보를 조회할 수 있다.
      */
+
+    /**
+     * 쓰레드의 상태
+     * {@link Thread.State}   | 설명
+     * 1.NEW                  | 쓰레드가 생성되고 아직 start() 가 호출되지 않은 상태
+     * 2.RUNNABLE             | 실행 중 또는 실행 가능한 상태
+     * 3.BLOCKED              | 동기화블럭에 의해서 일시정지된 상태(lock 이 풀릴 때 까지는 기다리는 상태)
+     * 4.WAITING,             | 쓰레드의 작업이 종료되지는 않았지만 실행가능하지 않은(unrunnable) 일시정지상태.
+     *   TIMED_WAITING        | 일시정지시간이 지정된 경우는 TIMED_WAITING
+     * 5.TERMINATED           | 쓰레드의 작업이 종료된 상태
+     *
+     *             <==   <==   <==      쓰레드 쉼터              <==   <==   <==   <==
+     *             ↓             | ↑        thread-z            ↓ |                  ↑
+     * time-out,   ↓             | thread-f                       |                  ↑  suspend(); 일시정지,
+     * resume(),   ↓             |                                |                  ↑  sleep(); 잠자기,
+     * notify(),   ↓             |                   thread-e     |                  ↑  wait(); 기다리기,
+     * interrupt() ↓             |--------------------------------|                  ↑  join(),
+     *             ↓                  일시정지(WAITING, BLOCKED),                     ↑  I/O block; 입출력 대기
+     *             ↓    <==   <==   <==   <==   <==   <==   <==   <==   <==   <==    ↑
+     *             ↓  ↓   ===========줄서기================================        ↑  ↑    stop() or 작업완료
+     * thread        ==>  thread-1  thread-A  thread-B  thread-2  thread-3  ==> thread-0        ==>       thread-0
+     * 생성        start()                                                       실행                      소멸
+     * (NEW)                                                                                          (TERMINATED)
+     *                    ================================================
+     *                                    실행 대기(RUNNABLE)
+     */
+
+    /**
+     * 쓰레드의 실행 제어
+     * - 쓰레드의 실행을 제어할 수 있는 메서드가 제공된다
+     * - 이들을 활용해서 보다 효율적인 프로그램을 작성할 수 있다.
+     *
+     * {@link Thread#sleep(long)}       | 지정된 시간(천분의 일 초 단위) 동안 쓰레드를 일시정지(WAITING) 시킨다.
+     *                                  | 지정한 시간이 지나고 나면, 자동적으로 다시 실행대기상태(RUNNABLE)가 된다.(잠들게)
+     *                                  | (static); 내가 나를 재움
+     * {@link Thread#join()}            | 지정된 시간동안 쓰레드가 실행되도록 한다.
+     *                                  | 지정된 시간이 지나거나 작업이 종료되면 join()을 호출한 쓰레드로 다시 돌아와 실행을 계속 한다.(다른 쓰레드 기다리기)
+     * {@link Thread#interrupt()}       | sleep()이나 join() 에 의해 일시정지상태인 쓰레드를 깨워서 실행대기상태(RUNNABLE)로 만든다.(깨우는것)
+     *                                  | 해당 쓰레드에서는 {@link InterruptedException} 이 발생함으로써 일시정지 상태를 벗어나게 된다.
+     * {@link Thread#stop()}            | 쓰레드를 즉시 종료시킨다. (종료) deprecated..
+     * {@link Thread#suspend()}         | 쓰레드를 일시 정지시킨다. resume()을 호출하면 다시 실행대기상태(RUNNABLE)가 된다.(일시정지) deprecated..
+     * {@link Thread#resume()}          | suspend() 에 의해 일시정지상태에 잇는 쓰레드를 실행대기상태(RUNNABLE) 로 만든다.(재개) deprecated..
+     * {@link Thread#yield()}           | 실행중에 자신에게 주어진 실행시간을 다른 쓰레드에게 양보(yield) 하고 자신은 실행대기상태(RUNNABLE) 가 된다.
+     *                                  | (static); 내가 나를 다른 쓰레드에 양보
+     * static 이 아닌 메서드들은 남의 쓰레드 조작
+     * static 인 메서드들은 자기자신의 쓰레드만 조작(자기 자신에게만 호출 가능)
+     */
 }
