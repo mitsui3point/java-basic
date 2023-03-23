@@ -73,12 +73,12 @@ public class Ex13_0 {
      * resume(),   ↓             |                                |                  ↑  sleep(); 잠자기,
      * notify(),   ↓             |                   thread-e     |                  ↑  wait(); 기다리기,
      * interrupt() ↓             |--------------------------------|                  ↑  join(),
-     *             ↓                  일시정지(WAITING, BLOCKED),                     ↑  I/O block; 입출력 대기
+     *             ↓                  일시정지(WAITING, BLOCKED),                      ↑  I/O block; 입출력 대기
      *             ↓    <==   <==   <==   <==   <==   <==   <==   <==   <==   <==    ↑
      *             ↓  ↓   ===========줄서기================================        ↑  ↑    stop() or 작업완료
      * thread        ==>  thread-1  thread-A  thread-B  thread-2  thread-3  ==> thread-0        ==>       thread-0
      * 생성        start()                                                       실행                      소멸
-     * (NEW)                                                                                          (TERMINATED)
+     * (NEW)                                                                                             (TERMINATED)
      *                    ================================================
      *                                    실행 대기(RUNNABLE)
      */
