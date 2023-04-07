@@ -1,8 +1,24 @@
 package ch12;
 
-import java.util.ArrayList;
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Native;
 import java.util.Date;
 
+/**
+ * {@link Annotation}애노테이션이란?
+ * - 주석처럼 프로그래밍 언어에 영향을 미치지 않으며, 유용한 정보를 제공
+ * - 예시(JavaDoc)
+ *      : public class MyClass v1 -> 소스코드 설명 문서 v1 -> public class MyClass v1.1 -> 소스코드 설명 문서 v1(수정 누락, 불일치 발생)
+ *      : 해결 방안; 메서드 및 class 위에 JavaDoc 작성
+ * - 예시(Annotation)
+ *      : public class MyClass v1 -> xml 설정 v1 -> public class MyClass v1.1 -> xml 설정 v1(수정 누락, 불일치 발생)
+ *      : 해결 방안; 메서드 및 class 위에 메타정보를 담은 Annotation 을 선언
+ * - 특정 프로그램에 메타정보를 제공
+ *
+ * 표준 애노테이션
+ * - Java 에서 제공하는 애노테이션
+ *      : {@link Override}, {@link Deprecated}, {@link SuppressWarnings}, {@link SafeVarargs}, {@link FunctionalInterface}, {@link Native}
+ */
 public class Ex12_7 {
     /**
      * @SuppressWarnings
